@@ -34,6 +34,11 @@ class Product(models.Model):
     cover = models.ImageField(upload_to='images-products',
                               blank=True,
                               )
+    category = models.ForeignKey(Category,
+                                 related_name='Produtos',
+                                 null=True,
+                                 on_delete=models.CASCADE,
+                                 )
 
     def __str__(self) -> str:
         return self.name
