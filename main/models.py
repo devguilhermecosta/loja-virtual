@@ -12,6 +12,11 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ('name', )
+        verbose_name = 'categoria'
+        verbose_name_plural = 'categorias'
+
     def __str__(self) -> str:
         return self.name
 
@@ -31,7 +36,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    cover = models.ImageField(upload_to='images-products',
+    cover = models.ImageField(upload_to='images-products/',
                               blank=True,
                               )
     category = models.ForeignKey(Category,
@@ -39,6 +44,12 @@ class Product(models.Model):
                                  null=True,
                                  on_delete=models.CASCADE,
                                  )
+
+    class Meta:
+        ordering = ('name', )
+        verbose_name = 'produto'
+        verbose_name_plural = 'produtos'
+        index_together = (('id', 'slug'),)
 
     def __str__(self) -> str:
         return self.name
