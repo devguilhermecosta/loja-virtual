@@ -1,5 +1,15 @@
 {% extends 'global/pages/base.html' %}
 
 {% block main %}
-    <h1>Página de Contato</h1>
+    <section class="C-form">
+        <h1>Entre em contato conosco</h1>
+        <form action="" method="POST" class="C-form__form">
+            {% csrf_token %}
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            {% endfor %}
+            <button type="submit" class="C-form__button">enviar</button>
+        </form>
+    </section>
 {% endblock %}

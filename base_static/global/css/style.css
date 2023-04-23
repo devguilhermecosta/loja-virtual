@@ -130,6 +130,69 @@ a {
 }
 /* END FOOTER */
 
+/* START FORMS */
+.C-form {
+  width: 100%;
+  max-width: 840px;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+.C-form h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.C-form__form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.C-form__form label {
+  display: block;
+  width: 100%;
+}
+
+.C-form__input {
+  display: block;
+  width: 100%;
+  outline: none;
+  height: 45px;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.C-form__form textarea {
+  width: 100%;
+  outline: none;
+  padding: 5px;
+  resize: none;
+}
+
+.C-form__button {
+  font-size: 25px;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--orange-four);
+  color: var(--blue-one);
+  transition: 300ms linear;
+  display: block;
+  margin: 0 auto;
+}
+
+.C-form__button:hover {
+  background-color: var(--orange-three);
+}
+
+/* END FORMS */
+
 /* -- START ANIMATION -- */
 @keyframes open {
   from {
