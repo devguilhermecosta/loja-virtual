@@ -191,6 +191,10 @@ a {
   background-color: var(--orange-three);
 }
 
+.errorlist li {
+  color: var(--orange-one);
+}
+
 /* END FORMS */
 
 /* -- START ANIMATION -- */

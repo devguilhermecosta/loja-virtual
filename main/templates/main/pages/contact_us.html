@@ -3,11 +3,14 @@
 {% block main %}
     <section class="C-form">
         <h1>Entre em contato conosco</h1>
-        <form action="" method="POST" class="C-form__form">
+        <form action="{% url 'main:send_message' %}" method="POST" class="C-form__form">
             {% csrf_token %}
             {% for field in form %}
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
+
+                {{ field.errors }}
+                </br>
             {% endfor %}
             <button type="submit" class="C-form__button">enviar</button>
         </form>

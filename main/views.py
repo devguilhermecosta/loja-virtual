@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.http import HttpRequest, HttpResponse, Http404
 from django.forms import Form
 from main.forms.forms import ContactUsForm
 
@@ -19,7 +20,9 @@ def help(request: HttpRequest) -> HttpResponse:
 
 
 def contact_us(request: HttpRequest) -> HttpResponse:
-    contact_form: Form = ContactUsForm()
+    send_message_data = request.session.get('send_message_contact', None)
+
+    contact_form: Form = ContactUsForm(send_message_data)
 
     return render(
         request,
@@ -28,3 +31,20 @@ def contact_us(request: HttpRequest) -> HttpResponse:
             'form': contact_form,
         }
     )
+
+
+def send_message(request: HttpRequest) -> HttpResponse:
+    if not request.POST:
+        raise Http404()
+
+    post: dict = request.POST
+    request.session['send_message_contact'] = post
+    contact_form: Form = ContactUsForm(data=post)
+
+    if contact_form.is_valid():
+        print('mensagem enviada')
+        del request.session['send_message_contact']
+        return redirect(reverse('main:contact'))
+
+    print('mensagem não enviada')
+    return redirect(reverse('main:contact'))
