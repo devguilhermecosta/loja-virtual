@@ -96,6 +96,28 @@ a {
 /* STRAT MAIN */
 .C-main {
   grid-area: main;
+  padding: 5px 2%;
+}
+
+.C-main__title {
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--blue-one);
+  margin-bottom: 15px;
+}
+
+.C-main__h2 {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--blue-two);
+  margin-bottom: 5px;
+}
+
+.C-main__description {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--blue-three);
 }
 /* END MAIN */
 
