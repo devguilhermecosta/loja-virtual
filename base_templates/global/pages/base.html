@@ -2,22 +2,20 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'global/css/style.css' %}">
-  <link rel="shortcut icon" href="{% static 'global/images/book.ico' %}" type="image/x-icon">
-  <title>{% block 'title' %}{% endblock %}</title>
-</head>
+{% include 'global/partials/_head.html' %}
+<title>{% block title %}{% endblock %}</title>
+
 <body>
+  <!-- nav -->
+  {% include 'global/partials/_nav.html' %}
+
   <!-- block main -->
   <main>{% block main %}{% endblock %}</main>
   
-  <script>
-    const element = document.createElement('script');
-    element.setAttribute('src', "{% static 'global/js/script.js' %}");
-    document.body.appendChild(element);
-  </script>
+  <!-- footer -->
+  {% include 'global/partials/_footer.html' %}
+
+  <!-- scripts -->
+  {% include 'global/partials/_scripts_js.html' %}
 </body>
 </html>

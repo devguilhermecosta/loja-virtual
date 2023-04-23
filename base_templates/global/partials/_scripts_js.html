@@ -1,0 +1,7 @@
+{% load static %}
+
+<script>
+    const element = document.createElement('script');
+    element.setAttribute('src', "{% static 'global/js/script.js' %}");
+    document.body.appendChild(element);
+</script>
