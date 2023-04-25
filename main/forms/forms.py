@@ -48,7 +48,7 @@ class ContactUsForm(forms.Form):
         return name_field
 
     def clean_message(self) -> str:
-        message_field = self.cleaned_data['message', '']
+        message_field = self.cleaned_data.get('message', '')
 
         if len(message_field) < 5:
             raise ValidationError(

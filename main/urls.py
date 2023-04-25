@@ -7,5 +7,5 @@ urlpatterns: list = [
     path('', views.main, name='main'),
     path('ajuda/', views.help, name='help'),
     path('contato/', views.contact_us, name='contact'),
-    path('contato/senviar-mensagem', views.send_message, name='send_message'),
+    path('contato/enviar-mensagem', views.send_message, name='send_message'),
 ]
