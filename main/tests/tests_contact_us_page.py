@@ -2,8 +2,6 @@ from mixins.base_test import BaseTestMixin
 from django.urls import resolve, ResolverMatch
 from django.http import HttpResponse
 from django.forms import Form
-from django.forms import ModelForm
-from main import views
 from main import views
 from main.forms.forms import ContactUsForm
 from parameterized import parameterized
