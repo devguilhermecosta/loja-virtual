@@ -42,9 +42,8 @@ def send_message(request: HttpRequest) -> HttpResponse:
     contact_form: Form = ContactUsForm(data=post)
 
     if contact_form.is_valid():
-        print('mensagem enviada')
+        contact_form.send_message_from_email()
         del request.session['send_message_contact']
         return redirect(reverse('main:contact'))
 
-    print('mensagem não enviada')
     return redirect(reverse('main:contact'))

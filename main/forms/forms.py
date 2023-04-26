@@ -1,5 +1,7 @@
 from django import forms
+from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
+from lojavirtual import settings
 
 
 class ContactUsForm(forms.Form):
@@ -36,6 +38,21 @@ class ContactUsForm(forms.Form):
                                   }
                               )
                               )
+
+    def send_message_from_email(self) -> None:
+        message: str = (
+            f'Nome: {self.data["name"]} \n'
+            f'Email: {self.data["email"]} \n'
+            f'Mensagem: {self.data["message"]}'
+        )
+
+        send_mail(
+            f'{self.cleaned_data.get("name")}',
+            message,
+            self.data['email'],
+            [settings.EMAIL_CONTACT_US],
+            fail_silently=False
+        )
 
     def clean_name(self) -> str:
         name_field = self.cleaned_data.get('name', '')
