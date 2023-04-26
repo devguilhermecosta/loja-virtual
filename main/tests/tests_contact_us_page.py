@@ -2,6 +2,7 @@ from mixins.base_test import BaseTestMixin
 from django.urls import resolve, ResolverMatch
 from django.http import HttpResponse
 from django.forms import Form
+from django.core import mail
 from main import views
 from main.forms.forms import ContactUsForm
 from parameterized import parameterized
@@ -10,7 +11,7 @@ from parameterized import parameterized
 class ContactUsPageTests(BaseTestMixin):
     path: str = 'main:contact'
 
-    def test_contact_us_url_is_correct(self):
+    def test_contact_us_url_is_correct(self) -> None:
         url: str = self.make_reverse(self.path)
         self.assertEqual(url, '/contato/')
 
@@ -108,7 +109,36 @@ class ContactUsIntegrationTests(BaseTestMixin):
             content,
             )
 
-    def test_contact_us_send_form_ok(self) -> None:
-        self.fail(
-            'make test for send form without errors'
+    def test_contact_us_send_send_email_from_form_ok(self) -> None:
+        """
+        It is necessary to call the is_valid method before
+        send_message_from_email method, otherwise an AttributeError
+        exception will be raised
+        """
+        contact_form: Form = ContactUsForm(self.form_data)
+        form_valid: bool = contact_form.is_valid()
+        contact_form.send_message_from_email()
+        subject: str = mail.outbox[0].subject
+
+        self.assertTrue(form_valid)
+        self.assertEqual(subject, 'this is the name')
+
+    def test_contact_us_send_email_from_form_is_invalid(self) -> None:
+        self.form_data['name'] = ''
+        contact_form: Form = ContactUsForm(self.form_data)
+
+        self.assertFalse(contact_form.is_valid())
+
+    def test_contact_us_url_is_correct(self) -> None:
+        self.assertEqual(
+            self.make_reverse(self.path),
+            '/contato/enviar-mensagem/'
         )
+
+    def test_contact_us_status_code_302_if_email_send(self) -> None:
+        response: HttpResponse = self.client.post(
+            self.make_reverse(self.path),
+            data=self.form_data,
+        )
+
+        self.assertEqual(response.status_code, 302)
