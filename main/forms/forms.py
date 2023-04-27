@@ -1,7 +1,7 @@
 from django import forms
 from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
-from lojavirtual import settings
+import os
 
 
 class ContactUsForm(forms.Form):
@@ -50,7 +50,7 @@ class ContactUsForm(forms.Form):
             f'{self.cleaned_data.get("name")}',
             message,
             self.data['email'],
-            [settings.EMAIL_CONTACT_US],
+            [os.environ.get('EMAIL_HOST_USER')],
             fail_silently=False
         )
 
