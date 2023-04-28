@@ -1,0 +1,32 @@
+{% extends 'global/pages/base.html' %}
+{% load static %}
+
+{% block main %}
+    <section class="C-category">
+        <ul class="C-category__list">
+            <a href="{% url 'main:products_list' %}" class="C-category__link">
+                Todos
+            </a>
+            {% for category in category_list %}
+                <li class="C-category__li">
+                    <a href="{{ category.get_absolute_url }}"
+                    class="C-category__link">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="C-products">
+        {% for product in products %}
+        <div class="C-products_product">
+            {% if product.cover %}
+                <a class="C-product__link" href="{{ product.get_absolute_url }}">
+                    <img src="{{ product.cover.url }}" alt="Imagem de {{ product.name }}" class="C-product__img">
+                </a>
+            {% endif %}
+            <p class="C-product__title">{{ product.name }}</p>
+            <p class="C-product__category">{{ product.category }}</p>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}

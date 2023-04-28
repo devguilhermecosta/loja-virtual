@@ -119,6 +119,10 @@ a {
   font-weight: 300;
   color: var(--blue-three);
 }
+
+.C-category__listy {
+  list-style-type: none;
+}
 /* END MAIN */
 
 /* START FOOTER */

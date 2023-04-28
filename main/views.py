@@ -1,15 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpRequest, HttpResponse, Http404
 from django.forms import Form
 from main.forms.forms import ContactUsForm
-
-
-def main(request: HttpRequest) -> HttpResponse:
-    return render(
-        request,
-        'main/pages/main.html',
-        )
+from main.models import Product, Category
 
 
 def help(request: HttpRequest) -> HttpResponse:
@@ -47,3 +41,41 @@ def send_message(request: HttpRequest) -> HttpResponse:
         return redirect(reverse('main:contact'))
 
     return redirect(reverse('main:contact'))
+
+
+def products_list(request: HttpRequest,
+                  slug_category: str | None = None) -> HttpResponse:
+    category: Category | None = None
+    products: Product = Product.objects.filter(available=True)
+    category_list: Category = Category.objects.all()
+
+    if slug_category:
+        category = get_object_or_404(Category,
+                                     slug=slug_category,
+                                     )
+        products = Product.objects.filter(available=True,
+                                          category=category,
+                                          )
+
+    return render(
+        request,
+        'main/pages/products_list.html',
+        context={
+            'products': products,
+            'category_list': category_list,
+        }
+    )
+
+
+def product_detail(request: HttpRequest, id: int, slug: str) -> HttpResponse:
+    product: Product = get_object_or_404(Product,
+                                         id=id,
+                                         slug=slug,
+                                         available=True,
+                                         )
+
+    return render(request,
+                  'main/pages/product_detail.html',
+                  context={
+                      'product': product,
+                  })
