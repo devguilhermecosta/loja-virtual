@@ -9,21 +9,7 @@
 {% endblock %}
 
 {% block main %}
-    <section class="C-category">
-        <form class="C-category__form" id="form_cat" method="GET" action="">
-            <select name="" id="select_cat" class="C-category__select">
-                <option value="{% url 'main:products_list' %}">            
-                    all
-                </option>
-                {% for category in category_list %}
-                    <option value="{{ category.get_absolute_url }}">
-                        {{ category.name }}
-                    </option>
-                {% endfor %}
-            </select>
-            <button class="C-category__button" id="btn_form_cat">Filter</button>
-        </form>
-    </section>
+    {% include 'main/partials/_filter_category_products.html' %}
 
     {% if category %}
         <h1 class="C-products__h1" >{{ category }}</h1>

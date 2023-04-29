@@ -75,8 +75,11 @@ def product_detail(request: HttpRequest, id: int, slug: str) -> HttpResponse:
                                          available=True,
                                          )
 
+    category_list: Category = Category.objects.all()
+
     return render(request,
                   'main/pages/product_detail.html',
                   context={
                       'product': product,
+                      'category_list': category_list,
                   })
