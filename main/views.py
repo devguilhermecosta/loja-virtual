@@ -63,6 +63,7 @@ def products_list(request: HttpRequest,
         context={
             'products': products,
             'category_list': category_list,
+            'category': category,
         }
     )
 

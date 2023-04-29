@@ -1,5 +1,16 @@
 {% extends 'global/pages/base.html' %}
 
 {% block main %}
-    {{ product }}
+    <section class="C-product__detail">
+        <figure class="C-product__figure">
+            <img class="C-product__img" src="{{ product.cover.url }}" alt="Image of {{ product.name }}">
+        </figure>
+        <div class="C-product__data">
+            <h1>{{ product.name }}</h1>
+            <h2>{{ product.category }}</h2>
+            <p>{{ product.description }}</p>
+            <p>Price: R$ {{ product.price }}</p>
+            <p>Quantity into stock: {{ product.stock }}</p>
+        </div>
+    </section>
 {% endblock %}
