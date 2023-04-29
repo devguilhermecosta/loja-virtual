@@ -20,7 +20,7 @@ def add_to_cart(request: HttpRequest, product_id: int) -> HttpResponse:
                          quantity=data['quantity'],
                          update_quantity=data['update'],
                          )
-        return redirect('cart:cart_detais')
+        return redirect('cart:details')
 
 
 def remove_to_cart(request: HttpRequest, product_id: int) -> HttpResponse:
@@ -29,7 +29,7 @@ def remove_to_cart(request: HttpRequest, product_id: int) -> HttpResponse:
                                 id=product_id,
                                 )
     cart.remove(product)
-    return redirect('cart:cart_details')
+    return redirect('cart:details')
 
 
 def cart_details(request: HttpRequest) -> HttpResponse:
