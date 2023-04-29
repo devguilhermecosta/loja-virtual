@@ -301,4 +301,35 @@ a {
     column-gap: 20px
   } 
 }
+
+@media screen and (min-width: 800px) {
+  .C-nav {
+    align-items: center;
+  } 
+
+  .C-nav__ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .C-nav__ul {
+    position: relative;
+    top: 0;
+    background-color: transparent;
+  }
+
+  .C-nav__li {
+    display: inline;
+    margin-right: 30px;
+  }
+
+  .C-nav__li:first-child {
+    margin-left: 15px;
+  }
+
+  .C-nav__menu_mobile {
+    display: none !important;
+  }
+}
 /* --END MEDIA QUERIES */
