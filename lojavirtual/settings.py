@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -173,3 +174,5 @@ EMAIL_PORT = int(os.environ.get('EMAIL_PORT'))
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True if os.environ.get('EMAIL_USE_TLS') == '0' else False
+
+CART_ID = 'cart'
