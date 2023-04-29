@@ -1,5 +1,9 @@
 {% extends 'global/pages/base.html' %}
 
+{% block title %}
+    {{ product.category }} | {{ product.name }}
+{% endblock %}
+
 {% block main %}
     <section class="C-product__detail">
         <figure class="C-product__figure">

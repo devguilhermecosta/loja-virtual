@@ -1,5 +1,13 @@
 {% extends 'global/pages/base.html' %}
 
+{% block title %}
+    {% if category %}
+        Home | {{ category }}
+    {% else %}
+        Home | All Products
+    {% endif %}
+{% endblock %}
+
 {% block main %}
     <section class="C-category">
         <form class="C-category__form" id="form_cat" method="GET" action="">
