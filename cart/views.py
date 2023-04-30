@@ -43,7 +43,7 @@ def cart_details(request: HttpRequest) -> HttpResponse:
         )
     return render(
         request,
-        'cart/pages/cart_details.html',
+        'cart/pages/details.html',
         context={
             'cart': cart,
         }

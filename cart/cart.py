@@ -8,10 +8,9 @@ from decimal import Decimal
 class Cart:
     def __init__(self, request: HttpRequest) -> None:
         self.__session = request.session
-        cart: dict = self.__session.get[settings.CART_ID]
-        if not cart:
-            cart = self.__session[settings.CART_ID] = {}
-        self.__cart: dict = cart
+        self.__cart: dict = self.__session.get(settings.CART_ID)
+        if not self.__cart:
+            self.__cart = self.__session[settings.CART_ID] = {}
 
     def add_product(self,
                     product: Product,
