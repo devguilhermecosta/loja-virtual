@@ -60,11 +60,12 @@ a {
 .C-nav__menu_mobile {
   cursor: pointer;
   color: var(--white);
+  z-index: 10000;
 }
 
 .C-nav__ul {
   position: fixed;
-  top: 44px;
+  top: 0;
   left: 0;
   width: 100%;
   text-align: center;
@@ -83,6 +84,11 @@ a {
 .C-nav__link {
   text-transform: capitalize;
   color: var(--white);
+}
+
+.C-nav__link span {
+  color:rgb(117, 212, 117);
+  font-size: 50px;
 }
 
 .C-nav__title {

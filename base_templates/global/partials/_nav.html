@@ -9,6 +9,17 @@
     <li class="C-nav__li">
       <a href="{% url 'main:help' %}" class="C-nav__link">ajuda</a>
     </li>
+    {% with quantity_itens=cart|length %}
+      {% if quantity_itens > 0 %}
+        <li class="C-nav__li">
+          <a href="{% url 'cart:details' %}" class="C-nav__link">
+            <span class="material-symbols-outlined">
+              shopping_cart
+            </span>
+          </a>
+        </li>
+      {% endif %}
+    {% endwith %}
   </ul>
   
   <span class="C-nav__menu_mobile material-symbols-outlined">
