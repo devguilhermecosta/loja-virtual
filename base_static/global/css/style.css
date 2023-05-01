@@ -222,7 +222,6 @@ a {
 
 .C-cart {
   width: 100%;
-  max-width: 650px;
   padding: 10px;
 }
 
@@ -314,7 +313,7 @@ a {
 .C-cart__button {
   text-transform: capitalize;
   font-weight: 400;
-  text-align: center;
+  text-align: right;
 }
 
 .C-cart__button > a {
