@@ -18,5 +18,12 @@
             <p>Price: R$ {{ product.price }}</p>
             <p>Quantity into stock: {{ product.stock }}</p>
         </div>
+        <div>
+            <form action="{% url 'cart:add' product.id %}" method="POST">
+                {% csrf_token %}
+                {{ add_product_form }}
+                <input type="submit" value="add to cart">
+            </form>
+        </div>
     </section>
 {% endblock %}

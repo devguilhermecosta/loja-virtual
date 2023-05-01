@@ -16,18 +16,18 @@ class Cart:
                     product: Product,
                     quantity: int,
                     update_quantity: Optional[bool] = False) -> None:
-        id_product: str = str(product.id)
-        if id_product not in self.__cart:
-            self.__cart[id_product] = {
+        product_id: str = str(product.id)
+        if product_id not in self.__cart:
+            self.__cart[product_id] = {
                 'quantity': 0,
                 'price': str(product.price)
             }
 
         if update_quantity:
-            self.__cart['id_product']['quantity'] = quantity
+            self.__cart[product_id]['quantity'] = quantity
 
         else:
-            self.__cart['id_product']['quantity'] += quantity
+            self.__cart[product_id]['quantity'] += quantity
 
         self.__save()
 
@@ -48,12 +48,13 @@ class Cart:
 
         for product in products:
             cart[str(product.id)]['product'] = product
-            for item in cart.values():
-                item['price'] = Decimal(item['price'])
-                item['subtotal'] = (
-                    Decimal(item['price']) * Decimal(item['quantity'])
-                    )
-                yield item
+
+        for item in cart.values():
+            item['price'] = Decimal(item['price'])
+            item['subtotal'] = (
+                Decimal(item['price']) * Decimal(item['quantity'])
+                )
+            yield item
 
     def __len__(self) -> int:
         result: int = 0

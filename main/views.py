@@ -4,6 +4,7 @@ from django.http import HttpRequest, HttpResponse, Http404
 from django.forms import Form
 from main.forms.forms import ContactUsForm
 from main.models import Product, Category
+from cart.forms import FormAddProductToCart
 
 
 def help(request: HttpRequest) -> HttpResponse:
@@ -77,9 +78,12 @@ def product_detail(request: HttpRequest, id: int, slug: str) -> HttpResponse:
 
     category_list: Category = Category.objects.all()
 
+    add_product_form = FormAddProductToCart()
+
     return render(request,
                   'main/pages/product_detail.html',
                   context={
                       'product': product,
                       'category_list': category_list,
+                      'add_product_form': add_product_form,
                   })
