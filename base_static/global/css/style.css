@@ -97,6 +97,7 @@ a {
 .C-main {
   grid-area: main;
   padding: 5px 2%;
+  overflow: hidden;
 }
 
 .C-main__title {
@@ -201,6 +202,143 @@ a {
 .C-product__data h1, .C-product__data h2, .C-product__data p {
   margin: 8px 0;
   text-transform: capitalize;
+}
+
+.C-product__form input[type='submit'] {
+  background-color: lightgreen;
+  border: none;
+  outline: none;
+  padding: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: opacity 150ms ease;
+}
+
+.C-product__form input[type='submit']:hover {
+  opacity: 0.7;
+}
+
+.C-cart {
+  width: 100%;
+  max-width: 650px;
+  padding: 10px;
+}
+
+.C-cart__title {
+  text-transform: capitalize;
+  text-decoration: underline;
+  font-weight: 800;
+  font-size: 25px;
+  margin-bottom: 35px;
+}
+
+.C-cart__details h2 {
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.C-cart__details > p {
+  font-size: 18px;
+  font-weight: 300;
+  color: #242222;
+  margin-bottom: 30px;
+}
+
+.C-cart__table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+.C-cart__table tbody {
+  white-space: nowrap;
+}
+
+.C-cart__table th {
+  text-transform: capitalize;
+}
+
+.C-cart__table img {
+  width: 100%;
+  max-width: 80px;
+}
+
+.C-cart__name {
+  color: #242222;
+  text-transform: capitalize;
+}
+
+.C-cart__form input[type='submit'] {
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  background-color: lightgreen;
+  cursor: pointer;
+  transition: background 300ms linear;
+}
+
+.C-cart__form input[type='submit']:hover {
+  background-color: rgb(117, 212, 117);
+}
+
+.C-cart__remove {
+  display: block;
+  text-align: center;
+  transition: color 150ms linear;
+}
+
+.C-cart__remove:hover {
+  color: red;
+}
+
+.C-cart__total {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.C-cart__total::after {
+  content: ' :';
+}
+
+.C-cart__total_price {
+  font-weight: 600;
+}
+
+.C-cart__button {
+  text-transform: capitalize;
+  font-weight: 400;
+  text-align: center;
+}
+
+.C-cart__button > a {
+  padding: 15px;
+  display: inline-block;
+  color: var(--white);
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.253);
+  transition: opacity 150ms linear;
+  text-align: center;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.C-cart__button > a:hover {
+  opacity: 0.8;
+}
+
+.C-cart__button a:first-child {
+  background-color: var(--orange-three);
+}
+
+.C-cart__button a:last-child {
+  background-color: var(--blue-one);
 }
 
 /* END MAIN */

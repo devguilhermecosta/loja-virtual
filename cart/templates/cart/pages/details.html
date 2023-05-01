@@ -5,65 +5,68 @@
 {% endblock %}
 
 {% block main %}
-    <h1>shopping cart</h1>
+    <section class="C-cart">
+        <h1 class="C-cart__title">shopping cart</h1>
 
-    <div>
-        {% with total_purchases=cart|length %}
-            {% if cart|length > 0 %}
-                <h2>your order</h2>
-                <a href="{% url 'cart:details' %}">
-                    {{ total_purchases }} item/itens,
-                    R$ {{ cart.get_total }}
-                </a>
-            {% else %}
-                <h2>empty cart</h2>
-            {% endif %}
-        {% endwith %}
-    </div>
-
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>product</th>
-                    <th>quantity</th>
-                    <th>remove</th>
-                    <th>price</th>
-                    <th>subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in cart %}
-                    {% with product=item.product %}
-                        <tr>
-                            <td>{{ product.name }}</td>
-                            <td>
-                                <form action="{% url 'cart:add' product.id %}" method="POST">
-                                    {% csrf_token %}
-                                    {{ item.form_add_to_cart.quantity }}
-                                    {{ item.form_add_to_cart.update }}
-                                    <input type="submit" value="update">
-                                </form>
-                            </td>
-                            <td>
-                                <a href="{% url 'cart:remove' product.id %}">Remove</a>
-                            </td>
-                            <td>R$ {{ item.price }}</td>
-                            <td>R$ {{ item.subtotal }}</td>
-                        </tr>
-                    {% endwith %}
-                {% endfor %}
-                <tr>
-                    <td>total</td>
-                    <td></td>
-                    <td>R$ {{ cart.get_total }}</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <div>
-            <a href="{% url 'main:main' %}">buy more products</a>
-            <a href="#">finish</a>
+        <div class="C-cart__details">
+            {% with total_purchases=cart|length %}
+                {% if total_purchases > 0 %}
+                    <h2>your order</h2>
+                        <p>
+                            {{ total_purchases }} item/itens.
+                            Total: R$ {{ cart.get_total }}
+                        </p>
+                {% else %}
+                    <h2>empty cart</h2>
+                {% endif %}
+            {% endwith %}
         </div>
-    </div>
+
+        <div class="C-cart__div_table">
+            <table class="C-cart__table" cellspacing="20px">
+                <thead>
+                    <tr>
+                        <th>product</th>
+                        <th>quantity</th>
+                        <th>remove</th>
+                        <th>price</th>
+                        <th>subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <tr>
+                                <td class="C-cart__name">
+                                    <img src="{{ product.cover.url }}" alt=""></br>
+                                    {{ product.name }}</td>
+                                <td>
+                                    <form class="C-cart__form" action="{% url 'cart:add' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ item.form_add_to_cart.quantity }}
+                                        {{ item.form_add_to_cart.update }}
+                                        <input type="submit" value="update">
+                                    </form>
+                                </td>
+                                <td>
+                                    <a class="C-cart__remove" href="{% url 'cart:remove' product.id %}"><span class="material-symbols-outlined">delete</span></a>
+                                </td>
+                                <td>R$ {{ item.price }}</td>
+                                <td>R$ {{ item.subtotal }}</td>
+                            </tr>
+                        {% endwith %}
+                    {% endfor %}
+                    <tr>
+                        <td class="C-cart__total">total</td>
+                        <td class="C-cart__total_price" >R$ {{ cart.get_total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <div class="C-cart__button">
+                <a href="{% url 'main:main' %}">buy more products</a>
+                <a href="#">finish</a>
+            </div>
+        </div>
+    </section>
 {% endblock %}
