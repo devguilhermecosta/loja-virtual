@@ -1,0 +1,16 @@
+{% extends 'global/pages/base.html' %}
+
+{% block title %}
+    Checkout |
+{% endblock %}
+
+{% block main %}
+    <h1>order sent successfully</h1>
+
+    <p>
+        confirmed order.
+        your order number is <strong>{{ order.id }}</strong>
+    </p>
+    <a href="{% url 'main:main' %}">return to the store</a>
+
+{% endblock %}

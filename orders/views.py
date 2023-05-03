@@ -21,7 +21,7 @@ def create_order(request: HttpRequest) -> HttpResponse:
             cart.clean_cart()
             return render(
                 request,
-                'orders/pages/create.html',
+                'orders/pages/checkout.html',
                 context={
                     'order': order,
                 }

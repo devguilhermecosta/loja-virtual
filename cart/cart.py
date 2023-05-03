@@ -70,6 +70,5 @@ class Cart:
         return result
 
     def clean_cart(self) -> None:
-        for key in self.__session.keys():
-            del self.__session.keys[key]
+        del self.__session[settings.CART_ID]
         self.__session.modified = True

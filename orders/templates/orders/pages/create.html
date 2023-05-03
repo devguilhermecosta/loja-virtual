@@ -1,0 +1,30 @@
+{% extends 'global/pages/base.html' %}
+
+{% block title %}
+    Order |
+{% endblock %}
+
+{% block main %}
+    <h1>checkout</h1>
+
+    <div>
+        <h2>your order</h2>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    name: {{ item.product.name }} - 
+                    quantity: {{ item.quantity }} - 
+                    price: R$ {{ item.price }} - 
+                    total: R$ {{ item.subtotal }}
+                </li>
+            {% endfor %}
+        </ul>
+        </br>
+        <p>total: R$ {{ cart.get_total }}</p>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="send order">
+    </form>
+{% endblock %}
