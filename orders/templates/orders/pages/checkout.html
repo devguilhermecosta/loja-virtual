@@ -5,12 +5,15 @@
 {% endblock %}
 
 {% block main %}
-    <h1>order sent successfully</h1>
+    <h1 class="Order__title">order sent successfully</h1>
 
-    <p>
-        confirmed order.
-        your order number is <strong>{{ order.id }}</strong>
-    </p>
-    <a href="{% url 'main:main' %}">return to the store</a>
+    <div class="Order__details">
+        <p>
+            confirmed order.
+            your order number is <strong>{{ order.id }}</strong>
+        </p>
+        <a href="{% url 'main:main' %}">return to the store</a>
+    </div>
+    
 
 {% endblock %}

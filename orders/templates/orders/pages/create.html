@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block main %}
-    <h1>checkout</h1>
+    <h1 class="Order__title">checkout</h1>
 
-    <div>
+    <div class="Order__details">
         <h2>your order</h2>
         <ul>
             {% for item in cart %}
                 <li>
-                    name: {{ item.product.name }} - 
+                    <img src="{{ item.product.cover.url }}" alt="">
+                    {{ item.product.name }} - 
                     quantity: {{ item.quantity }} - 
                     price: R$ {{ item.price }} - 
                     total: R$ {{ item.subtotal }}
@@ -22,7 +23,7 @@
         </br>
         <p>total: R$ {{ cart.get_total }}</p>
     </div>
-    <form action="" method="POST">
+    <form class="Order__form" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="send order">
